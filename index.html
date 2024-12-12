@@ -20,7 +20,7 @@
 <body class="bg-gray-100 px-4">
 
     <!-- Modal -->
-    <div id="infoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div id="infoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-lg p-6 max-w-sm mx-auto text-center">
             <h2 class="text-lg font-semibold mb-4">This Web Build By</h2>
             <div class="flex items-center mb-6">
@@ -130,23 +130,27 @@
         }
     });
 
-        document.addEventListener("DOMContentLoaded", function () {
-        console.log("DOM Loaded"); // Debugging
+    document.addEventListener("DOMContentLoaded", function () {
         const infoModal = document.getElementById("infoModal");
         if (infoModal) {
-            console.log("Modal found"); // Debugging
+            // Add fade-in effect
             infoModal.classList.remove("hidden");
+            setTimeout(() => {
+                infoModal.classList.add("opacity-100");
+                infoModal.classList.remove("opacity-0");
+            }, 10);
 
-            // Tombol Close
             const closeModalButton = document.getElementById("closeModal");
             closeModalButton.addEventListener("click", function () {
-                console.log("Close button clicked"); // Debugging
-                infoModal.classList.add("hidden");
+                // Add fade-out effect
+                infoModal.classList.add("opacity-0");
+                infoModal.classList.remove("opacity-100");
+                setTimeout(() => {
+                    infoModal.classList.add("hidden");
+                }, 300);
             });
-        } else {
-            console.error("Modal not found!");
         }
-        });
+    });
     </script>
 </body>
 </html>
