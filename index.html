@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Visualisasi Data</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <style>
-            body {
-                font-family: 'Lato', sans-serif;
-            }
-            #infoModal {
-                z-index: 9999;
-            }
 
-        </style>
-    </head>
-<body class="bg-gray-100 px-4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+
+        #infoModal {
+            display: none;
+            z-index: 9999;
+        }
+
+        #lulusModal {
+            display: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 px-4 max-w-screen-sm mx-auto">
 
     <!-- Modal -->
-    <div id="infoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden opacity-0 transition-opacity duration-300">
+    <div id="infoModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-lg p-6 max-w-sm mx-auto text-center">
             <h2 class="text-lg font-semibold mb-4">This Web Build By</h2>
             <div class="flex items-center mb-6">
@@ -35,12 +44,15 @@
         </div>
     </div>
 
+    <!-- Modal -->
+
     <div class="grid grid-cols-2 gap-4 p-4">
         <!-- Card Jumlah Mahasiswa -->
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcProfile.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class="bg-purple-500 text-white px-4 py-2 rounded-md">Detail</button>
+                <button onclick="scrollToTable()"
+                    class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition-colors">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa</h3>
             <p id="jmlhSiswa" class="text-2xl font-bold">
@@ -48,8 +60,8 @@
             </p>
             <hr class="border-t-8 border-purple-500 my-4 -mb-1 rounded">
         </div>
-        
-        <!-- Card Jumlah Mahasiswa -->
+
+        <!-- Card Jumlah Mahasiswa Lulus-->
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcLulus.png" alt="Icon" class="w-12 h-12 mr-4">
@@ -89,10 +101,45 @@
         </div>
     </div>
 
-
-    <div class="p-4">
-        <h2 class="text-xl font-semibold">Data Nilai IF-1 KBVD</h2>
+    <!-- Data Grafik -->
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;">
+        <div class="flex items-center mb-4">
+            <img src="icons/IcGrafik.png" alt="Icon" class="w-10 h-10 mr-4">
+            <h3 class="text-xl font-semibold">Data Nilai IF-1 KBVD</h3>
+        </div>
+        <div class="relative">
+            <!-- Container untuk grafik -->
+            <div id="chart" style="height: 300;"></div>
+        </div>
     </div>
+
+    <!-- Data Mahasiswa Lulus -->
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;">
+        <div class="flex items-center mb-4">
+            <img src="icons/IcGrafik.png" alt="Icon" class="w-10 h-10 mr-4">
+            <h3 class="text-xl font-semibold">Jumlah Mahasiswa Lulus</h3>
+        </div>
+        <div class="relative">
+            <!-- Container untuk grafik -->
+            <div id="passFailChart" style="height: 200;"></div>
+        </div>
+    </div>
+
+    <!-- Data Nilai UTS dan UAS -->
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;">
+        <div class="flex items-center mb-4">
+            <img src="icons/IcGrafik.png" alt="Icon" class="w-10 h-10 mr-4">
+            <h3 class="text-xl font-semibold">Nilai UTS dan UAS</h3>
+        </div>
+        <div class="relative">
+            <!-- Container untuk grafik -->
+            <div id="nilaiUtsUas" style="height: 200;"></div>
+        </div>
+    </div>
+   
+
+    <!-- Tabel Data Nilai -->
+    <h2 id="tableSection" class="text-xl font-semibold mt-6">Data Nilai IF-1 KBVD</h2>
     <div class="p-4">
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <div class="overflow-x-auto rounded">
@@ -115,42 +162,50 @@
             </div>
         </div>
     </div>
-    
+
     <!-- <div id="chart"></div> -->
     <script src="chart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        const infoModal = document.getElementById("infoModal");
-        if (infoModal) {
-            infoModal.classList.remove("hidden");
-            const closeModalButton = document.getElementById("closeModal");
-            closeModalButton.addEventListener("click", function () {
-                infoModal.classList.add("hidden");
-            });
-        }
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const infoModal = document.getElementById("infoModal");
-        if (infoModal) {
-            // Add fade-in effect
-            infoModal.classList.remove("hidden");
-            setTimeout(() => {
-                infoModal.classList.add("opacity-100");
-                infoModal.classList.remove("opacity-0");
-            }, 10);
-
-            const closeModalButton = document.getElementById("closeModal");
-            closeModalButton.addEventListener("click", function () {
-                // Add fade-out effect
-                infoModal.classList.add("opacity-0");
-                infoModal.classList.remove("opacity-100");
-                setTimeout(() => {
+            const infoModal = document.getElementById("infoModal");
+            if (infoModal) {
+                infoModal.classList.remove("hidden");
+                const closeModalButton = document.getElementById("closeModal");
+                closeModalButton.addEventListener("click", function () {
                     infoModal.classList.add("hidden");
-                }, 300); // Matches the duration of the transition
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const infoModal = document.getElementById("infoModal");
+            if (infoModal) {
+                // Add fade-in effect
+                infoModal.classList.remove("hidden");
+                setTimeout(() => {
+                    infoModal.classList.add("opacity-100");
+                    infoModal.classList.remove("opacity-0");
+                }, 10);
+
+                const closeModalButton = document.getElementById("closeModal");
+                closeModalButton.addEventListener("click", function () {
+                    // Add fade-out effect
+                    infoModal.classList.add("opacity-0");
+                    infoModal.classList.remove("opacity-100");
+                    setTimeout(() => {
+                        infoModal.classList.add("hidden");
+                    }, 300); // Matches the duration of the transition
+                });
+            }
+        });
+
+        function scrollToTable() {
+            document.getElementById('tableSection').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
-    });
     </script>
 </body>
+
 </html>
