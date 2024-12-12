@@ -240,7 +240,11 @@ function nilaiUtsUas() {
     },
     xaxis: {
       categories: nimList,
-    },
+      title: {
+        text: 'NIM'
+      },
+      tickAmount: 10 // Specify how many ticks to show
+  },
     yaxis: {
       title: {
         text: 'Nilai'
@@ -257,6 +261,31 @@ function nilaiUtsUas() {
   var chart = new ApexCharts(document.querySelector("#nilaiUtsUas"), options);
   chart.render();
 }
+
+function calculateAverageUts() {
+  // Assuming your existing data is stored in a variable called 'data'
+  const utsScores = data.map(student => student.UTS); // Extract UTS scores
+  const total = utsScores.reduce((acc, score) => acc + score, 0); // Sum of UTS scores
+  const average = total / utsScores.length; // Calculate average
+  return average;
+}
+
+function calculateAverageUas() {
+  // Assuming your existing data is stored in a variable called 'data'
+  const uasScores = data.map(student => student.UAS); // Extract UAS scores
+  const totalUas = uasScores.reduce((acc, score) => acc + score, 0); // Sum of UAS scores
+  const averageUas = totalUas / uasScores.length; // Calculate average
+  return averageUas;
+}
+
+// Call this function and update the UTS average display
+const averageUts = calculateAverageUts();
+document.getElementById('meanUts').innerText = averageUts.toFixed(2); // Update the display with the average UTS score
+
+// Call this function and update the UTS average display
+const averageUas = calculateAverageUts();
+document.getElementById('meanUas').innerText = averageUts.toFixed(2); // Update the display with the average UTS score
+
 
 // Panggil fungsi untuk membuat grafik
 createChart();

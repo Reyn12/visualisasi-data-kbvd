@@ -65,7 +65,7 @@
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcLulus.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class="text-white px-4 py-2 rounded-md" style="background-color: #4D6DEB;">Detail</button>
+                <button class="text-white px-4 py-2 rounded-md" style="background-color: #4D6DEB;" onclick="scrollToChart()">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa Lulus</h3>
             <p id="jmlhSiswa" class="text-2xl font-bold">
@@ -75,14 +75,14 @@
         </div>
 
         <!-- Card Rata-rata UTS -->
-        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
+        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col" id="scrollToChartUtsUasSection">
             <div class="flex items-center justify-between">
                 <img src="icons/IcUts.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class=" text-white px-4 py-2 rounded-md" style="background-color: #E53F63;">Detail</button>
+                <button class=" text-white px-4 py-2 rounded-md" style="background-color: #E53F63;" onclick="scrollToUtsUasChart()">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UTS</h3>
-            <p id="jmlhSiswa" class="text-2xl font-bold">
-                <span>8</span> <span class="text-sm ml-2">Orang</span>
+            <p id="meanUts" class="text-2xl font-bold">
+                <span>8</span>
             </p>
             <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #E53F63;">
         </div>
@@ -91,11 +91,11 @@
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcUas.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class="text-white px-4 py-2 rounded-md" style="background-color: #7da144;">Detail</button>
+                <button onclick="scrollToUtsUasChart()" class="text-white px-4 py-2 rounded-md" style="background-color: #7da144;">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UAS</h3>
-            <p id="jmlhSiswa" class="text-2xl font-bold">
-                <span>6</span> <span class="text-sm ml-2">Orang</span>
+            <p id="meanUas" class="text-2xl font-bold">
+                <span>6</span>
             </p>
             <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #7da144;">
         </div>
@@ -114,7 +114,7 @@
     </div>
 
     <!-- Data Mahasiswa Lulus -->
-    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;">
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;" id="passFailChartSection">
         <div class="flex items-center mb-4">
             <img src="icons/IcGrafik.png" alt="Icon" class="w-10 h-10 mr-4">
             <h3 class="text-xl font-semibold">Jumlah Mahasiswa Lulus</h3>
@@ -126,7 +126,7 @@
     </div>
 
     <!-- Data Nilai UTS dan UAS -->
-    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;">
+    <div class="bg-white shadow-md rounded-lg p-4 mt-6" style="border: 1px solid #ccc; border-radius: 5px;" id="utsUasChartSection">
         <div class="flex items-center mb-4">
             <img src="icons/IcGrafik.png" alt="Icon" class="w-10 h-10 mr-4">
             <h3 class="text-xl font-semibold">Nilai UTS dan UAS</h3>
@@ -204,6 +204,16 @@
                 behavior: 'smooth',
                 block: 'start'
             });
+        }
+
+        function scrollToChart() {
+            const chartSection = document.getElementById('passFailChartSection');
+            chartSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToUtsUasChart() {
+            const chartSection = document.getElementById('utsUasChartSection');
+            chartSection.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
