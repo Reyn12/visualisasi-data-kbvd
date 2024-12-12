@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visualisasi Data</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <style>
+            body {
+             font-family: 'Lato', sans-serif;
+            }
+            /* .gradient-card {
+                background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+            }     */
+        </style>
+    </head>
+<body class="bg-gray-100 px-4">
+
+
+    <div class="grid grid-cols-2 gap-4 p-4">
+        <!-- Card Jumlah Mahasiswa -->
+        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
+            <div class="flex items-center justify-between">
+                <img src="icons/IcProfile.png" alt="Icon" class="w-12 h-12 mr-4">
+                <button class="bg-purple-500 text-white px-4 py-2 rounded-md">Detail</button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa</h3>
+            <p id="jmlhSiswa" class="text-2xl font-bold">
+                <span>10</span> <span class="text-sm ml-2">Orang</span>
+            </p>
+            <hr class="border-t-8 border-purple-500 my-4 -mb-1 rounded">
+        </div>
+        
+        <!-- Card Jumlah Mahasiswa -->
+        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
+            <div class="flex items-center justify-between">
+                <img src="icons/IcLulus.png" alt="Icon" class="w-12 h-12 mr-4">
+                <button class="text-white px-4 py-2 rounded-md" style="background-color: #4D6DEB;">Detail</button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa Lulus</h3>
+            <p id="jmlhSiswa" class="text-2xl font-bold">
+                <span>3</span> <span class="text-sm ml-2">Orang</span>
+            </p>
+            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #4D6DEB;">
+        </div>
+
+        <!-- Card Rata-rata UTS -->
+        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
+            <div class="flex items-center justify-between">
+                <img src="icons/IcUts.png" alt="Icon" class="w-12 h-12 mr-4">
+                <button class=" text-white px-4 py-2 rounded-md" style="background-color: #E53F63;">Detail</button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UTS</h3>
+            <p id="jmlhSiswa" class="text-2xl font-bold">
+                <span>8</span> <span class="text-sm ml-2">Orang</span>
+            </p>
+            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #E53F63;">
+        </div>
+
+        <!-- Card Rata-rata UAS -->
+        <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
+            <div class="flex items-center justify-between">
+                <img src="icons/IcUas.png" alt="Icon" class="w-12 h-12 mr-4">
+                <button class="text-white px-4 py-2 rounded-md" style="background-color: #7da144;">Detail</button>
+            </div>
+            <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UAS</h3>
+            <p id="jmlhSiswa" class="text-2xl font-bold">
+                <span>6</span> <span class="text-sm ml-2">Orang</span>
+            </p>
+            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #7da144;">
+        </div>
+    </div>
+
+
+    <div class="p-4">
+        <h2 class="text-xl font-semibold">Data Nilai IF-1 KBVD</h2>
+    </div>
+    <div class="p-4">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="overflow-x-auto rounded">
+                <table class="min-w-full">
+                    <thead class="text-white" style="background-color: #3db824;">
+                        <tr>
+                            <th class="py-2 px-4 text-left">No</th>
+                            <th class="py-2 px-4 text-left">NIM</th>
+                            <th class="py-2 px-4 text-left">Quiz</th>
+                            <th class="py-2 px-4 text-left">Tugas</th>
+                            <th class="py-2 px-4 text-left">UTS</th>
+                            <th class="py-2 px-4 text-left">UAS</th>
+                            <th class="py-2 px-4 text-left">Nilai Akhir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data akan diisi di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div id="chart"></div> -->
+    <script src="chart.js"></script>
+</body>
+</html>
