@@ -150,7 +150,7 @@ function createChart() {
       opacity: 1,
     },
     title: {
-      text: "Nilai Quiz, Tugas, UTS, UAS, Nilai Akhir",
+      text: "Nilai Quiz, Tugas, UTS, UAS",
       align: "center",
     },
     responsive: [
