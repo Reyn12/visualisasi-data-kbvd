@@ -14,12 +14,40 @@
         }
 
         #infoModal {
+            display: none;
             z-index: 9999;
         }
 
         #lulusModal {
             display: none;
             z-index: 9999;
+        }
+
+        .card-button {
+            width: 100px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .custom-card-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .custom-card-button:hover {
+            background-color: #2e6da4;
+        }
+
+        .custom-hr {
+            border: none;
+            height: 3px;
+            background-color: #aaa;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -50,53 +78,61 @@
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcProfile.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button onclick="scrollToTable()"
-                    class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition-colors">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa</h3>
             <p id="jmlhSiswa" class="text-2xl font-bold">
                 <span>10</span> <span class="text-sm ml-2">Orang</span>
             </p>
-            <hr class="border-t-8 border-purple-500 my-4 -mb-1 rounded">
+            <hr class="custom-hr">
+            <div class="flex items-center justify-center">
+                <button onclick="scrollToTable()"
+                    class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition-colors mt-4 card-button custom-card-button">Detail</button>
+            </div>
         </div>
 
         <!-- Card Jumlah Mahasiswa Lulus-->
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcLulus.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class="text-white px-4 py-2 rounded-md" style="background-color: #4D6DEB;" onclick="scrollToChart()">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Jumlah Mahasiswa Lulus</h3>
             <p id="jmlhSiswa" class="text-2xl font-bold">
                 <span>3</span> <span class="text-sm ml-2">Orang</span>
             </p>
-            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #4D6DEB;">
+            <hr class="custom-hr" style="background-color: #4D6DEB;">
+            <div class="flex items-center justify-center">
+                <button class="text-white px-4 py-2 rounded-md mt-4 card-button custom-card-button" style="background-color: #4D6DEB;" onclick="scrollToChart()">Detail</button>
+            </div>
         </div>
 
         <!-- Card Rata-rata UTS -->
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col" id="scrollToChartUtsUasSection">
             <div class="flex items-center justify-between">
                 <img src="icons/IcUts.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button class=" text-white px-4 py-2 rounded-md" style="background-color: #E53F63;" onclick="scrollToUtsUasChart()">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UTS</h3>
             <p id="meanUts" class="text-2xl font-bold">
                 <span>8</span>
             </p>
-            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #E53F63;">
+            <hr class="custom-hr" style="background-color: #E53F63;">
+            <div class="flex items-center justify-center">
+                <button class=" text-white px-4 py-2 rounded-md mt-4 card-button custom-card-button" style="background-color: #E53F63;" onclick="scrollToUtsUasChart()">Detail</button>
+            </div>
         </div>
 
         <!-- Card Rata-rata UAS -->
         <div class="bg-white shadow-md rounded-lg p-4 flex flex-col">
             <div class="flex items-center justify-between">
                 <img src="icons/IcUas.png" alt="Icon" class="w-12 h-12 mr-4">
-                <button onclick="scrollToUtsUasChart()" class="text-white px-4 py-2 rounded-md" style="background-color: #7da144;">Detail</button>
             </div>
             <h3 class="text-lg font-semibold mt-4">Rata-rata Nilai UAS</h3>
             <p id="meanUas" class="text-2xl font-bold">
                 <span>6</span>
             </p>
-            <hr class="border-t-8 my-4 -mb-1 rounded" style="border-color: #7da144;">
+            <hr class="custom-hr" style="background-color: #7da144;">
+            <div class="flex items-center justify-center">
+                <button onclick="scrollToUtsUasChart()" class="text-white px-4 py-2 rounded-md mt-4 card-button custom-card-button" style="background-color: #7da144;">Detail</button>
+            </div>
         </div>
     </div>
 
@@ -135,7 +171,6 @@
             <div id="nilaiUtsUas" style="height: 200;"></div>
         </div>
     </div>
-   
 
     <!-- Tabel Data Nilai -->
     <h2 id="tableSection" class="text-xl font-semibold mt-6">Data Nilai IF-1 KBVD</h2>
