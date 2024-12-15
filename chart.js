@@ -282,9 +282,9 @@ function calculateAverageUas() {
 const averageUts = calculateAverageUts();
 document.getElementById('meanUts').innerText = averageUts.toFixed(2); // Update the display with the average UTS score
 
-// Call this function and update the UTS average display
-const averageUas = calculateAverageUts();
-document.getElementById('meanUas').innerText = averageUts.toFixed(2); // Update the display with the average UTS score
+// Call this function and update the UAS average display
+const averageUas = calculateAverageUas();
+document.getElementById('meanUas').innerText = averageUas.toFixed(2); // Update the display with the average UAS score
 
 
 // Panggil fungsi untuk membuat grafik
